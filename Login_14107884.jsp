@@ -5,6 +5,15 @@
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
+	<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+              content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.css" />
+    <link rel="stylesheet" href="themes/default/default.min.css" />
+    <link rel="stylesheet" href="themes/default/jquery.mobile.icons.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
 	<title id="title">Login</title>
 </head>
 
