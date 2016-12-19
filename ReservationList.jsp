@@ -12,14 +12,11 @@
 	}
 	User loginUser = (User) session.getAttribute("LoginUser");
 
-	if (request.getAttribute("Reservation") == null) {
+	if (request.getAttribute("ReservationInfo") == null) {
 		response.sendRedirect("Login.jsp");
 		return;
 	}
-	Reservation reservationInfo = (Reservation) request.getAttribute("ReservationInfo");
-	User user=reservationInfo.getUser();
-	Room room=reservationInfo.getRoom();
-
+	LinkedList<Reservation> reservationInfo = (LinkedList<Reservation>) request.getAttribute("ReservationInfo");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -36,7 +33,7 @@
 
 		<table align="center" border="1" data-role="table">
 			<thead>
-				<tr bgcolor="<!--表上部色-->">
+				<tr bgcolor="blue<!--表上部色-->">
 					<td>会議室場所</td>
 					<td>利用開始時間</td>
 					<td>利用終了時間</td>
@@ -46,7 +43,11 @@
 			</thead>
 
 			<tbody>
-
+			<%
+			for( Reservation reservation : reservationInfo){
+			User user = reservation.getUser();
+			Room room = reservation.getRoom();
+			%>
 				<tr>
 					<td>
 						<!-- 場所 -->
@@ -54,22 +55,25 @@
 					</td>
 					<td>
 						<!-- 利用開始時間 -->
-						<%=reservationInfo.getStartYear() %>年 <%=reservationInfo.getStartMonth() %>月 <%=reservationInfo.getStartHour() %>時 <%=reservationInfo.getStartMinute() %>分
+						<%=reservation.getStartYear() %>年 <%=reservation.getStartMonth() %>月 <%=reservation.getStartHour() %>時 <%=reservation.getStartMinute() %>分
 					</td>
 					<td>
 						<!-- 利用終了時間 -->
-						<%=reservationInfo.getPeriodHour() %>時 <%=reservationInfo.getPeriodMinute() %>分
+						<%=reservation.getPeriodHour() %>時 <%=reservation.getPeriodMinute() %>分
 					</td>
 					<td>
 						<!-- 予約者名 -->
 						<%=user.getName() %>
 					</td>
 					<td>
-						<form method ="post" action = "ReservaitionDetailServlet">
+						<form method ="post" action = "ReservationDetailsServlet">
 						<input type="submit" value="詳細" />
-						<input type="hidden" name="RID" value="<%= reservationInfo.getRid() %>" />
+						<input type="hidden" name="RID" value=<%= reservation.getRid() %> />
 						</form>
 					</td>
 				</tr>
+				<%
+				}
+				%>
 			</tbody>
 		</table>

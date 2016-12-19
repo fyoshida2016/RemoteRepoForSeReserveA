@@ -15,7 +15,7 @@ import db.ReservationManager;
 import model.Reservation;
 
 
-@WebServlet(name = "ResevationListServlet", urlPatterns = { "/ResevationListServlet" })
+@WebServlet(name = "ReservationListServlet", urlPatterns = { "/ReservationListServlet" })
 public class ReservationListServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
